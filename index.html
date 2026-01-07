@@ -7,14 +7,16 @@
   <style>
     body { font-family: 'Segoe UI', Arial, sans-serif; margin: 10px; background-color: #f0f2f5; font-size: 14px; color: #333; }
     h2 { color: #1a3a5a; border-bottom: 2px solid #1a3a5a; padding-bottom: 10px; margin-top: 5px; }
-    .controles { display: grid; grid-template-columns: 1fr; gap: 15px; background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    .ramo-grupo { background: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #ddd; }
-    .ramo-titulo { font-weight: bold; font-size: 13px; color: #1a3a5a; margin-bottom: 8px; display: block; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+    .controles { display: grid; grid-template-columns: 1fr; gap: 10px; background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    label { font-weight: bold; font-size: 13px; display: block; margin-bottom: 5px; color: #1a3a5a; }
+    select { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px; background-color: #fafafa; }
     
-    .opt-item { display: flex; align-items: center; padding: 6px 0; border-bottom: 1px solid #f0f0f0; }
+    /* Estilo para los checkboxes de los optativos */
+    .optativos-container { background: #f8f9fa; padding: 10px; border-radius: 5px; border: 1px solid #ddd; margin-top: 5px; }
+    .opt-item { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee; }
     .opt-item:last-child { border-bottom: none; }
-    .opt-item input { margin-right: 10px; width: 18px; height: 18px; cursor: pointer; }
-    .opt-text { font-size: 12px; cursor: pointer; flex: 1; line-height: 1.2; }
+    .opt-item input { margin-right: 10px; width: 20px; height: 20px; cursor: pointer; }
+    .opt-text { font-size: 12px; cursor: pointer; flex: 1; }
 
     .btn-limpiar { background-color: #dc3545; color: white; border: none; padding: 12px; border-radius: 5px; width: 100%; font-weight: bold; margin-bottom: 15px; cursor: pointer; }
     .table-wrapper { overflow-x: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
@@ -33,39 +35,74 @@
 <button class="btn-limpiar" onclick="limpiarTodo()">🧹 Limpiar Todo</button>
 <div id="alerta"></div>
 
-<div class="controles" id="panel-controles">
-  
-  <div class="ramo-grupo">
-    <span class="ramo-titulo">🍽️ Cocina Criolla Chilena</span>
-    <div class="opt-item"><input type="checkbox" value="Lu-1-6:COCINA" onchange="actualizar()"><span class="opt-text">001D - Santamaría (Lu 08:31-12:50)</span></div>
-    <div class="opt-item"><input type="checkbox" value="Lu-8-13:COCINA" onchange="actualizar()"><span class="opt-text">002D - Tapia (Lu 13:41-18:10)</span></div>
+<div class="controles">
+  <div>
+    <label>🍽️ Cocina Criolla Chilena (PGG1110)</label>
+    <select id="cocina" onchange="actualizar()">
+      <option value="">-- Seleccionar Sección --</option>
+      <option value="Lu-1-6:COCINA">001D – Verónica Montserrat Santamaría (Lu 08:31-12:50)</option>
+      <option value="Lu-8-13:COCINA">002D – María Sylvia Tapia (Lu 13:41-18:10)</option>
+      <option value="Ma-1-6:COCINA">003D – Por Confirmar (Ma 08:31-12:50)</option>
+      <option value="Ju-1-6:COCINA">004D – Patricio Andrés Barrera (Ju 08:31-12:50)</option>
+    </select>
   </div>
 
-  <div class="ramo-grupo">
-    <span class="ramo-titulo">🍰 Pastelería Criolla</span>
-    <div class="opt-item"><input type="checkbox" value="Ma-1-6:PASTELERÍA" onchange="actualizar()"><span class="opt-text">001D - Barrera (Ma 08:31-12:50)</span></div>
-    <div class="opt-item"><input type="checkbox" value="Ma-8-13:PASTELERÍA" onchange="actualizar()"><span class="opt-text">002D - Muñoz (Ma 13:41-18:10)</span></div>
+  <div>
+    <label>🍰 Pastelería Criolla (PGG1111)</label>
+    <select id="pasteleria" onchange="actualizar()">
+      <option value="">-- Seleccionar Sección --</option>
+      <option value="Ma-1-6:PASTELERÍA">001D – Patricio Andrés Barrera (Ma 08:31-12:50)</option>
+      <option value="Ma-8-13:PASTELERÍA">002D – Katherine Alejandra Muñoz (Ma 13:41-18:10)</option>
+      <option value="Mi-1-6:PASTELERÍA">003D – Katherine Alejandra Muñoz (Mi 08:31-12:50)</option>
+    </select>
   </div>
 
-  <div class="ramo-grupo">
-    <span class="ramo-titulo">🍷 Vinos y Mixología</span>
-    <div class="opt-item"><input type="checkbox" value="Mi-1-5:VINOS" onchange="actualizar()"><span class="opt-text">001D - Michaud (Mi 08:31-12:10)</span></div>
-    <div class="opt-item"><input type="checkbox" value="Mi-8-12:VINOS" onchange="actualizar()"><span class="opt-text">002D - Tiska (Mi 13:41-17:20)</span></div>
+  <div>
+    <label>🧪 Gastronomía Científica (DPG1105)</label>
+    <select id="ciencia" onchange="actualizar()">
+      <option value="">-- Seleccionar Sección --</option>
+      <option value="Mi-1-3:CIENCIA">001D – Oscar Armando Carrasco (Mi 08:31-10:40)</option>
+      <option value="Mi-4-6:CIENCIA">002D – Romina del Carmen Díaz (Mi 10:41-12:50)</option>
+    </select>
   </div>
 
-  <div class="ramo-grupo">
-    <span class="ramo-titulo">🗣️ Inglés Elemental I</span>
-    <div class="opt-item"><input type="checkbox" value="Mi-7-8:INGLÉS (ON)|Vi-8-9:INGLÉS (ON)" onchange="actualizar()"><span class="opt-text">001D - Cornejo [ONLINE]</span></div>
-    <div class="opt-item"><input type="checkbox" value="Ma-13-14:INGLÉS (ON)|Ju-13-14:INGLÉS (ON)" onchange="actualizar()"><span class="opt-text">002D - Bravo [ONLINE]</span></div>
-    <div class="opt-item"><input type="checkbox" value="Ma-5-6:INGLÉS|Mi-6-7:INGLÉS" onchange="actualizar()"><span class="opt-text">003D - Fierro (Presencial)</span></div>
+  <div>
+    <label>🍷 Vinos y Mixología (PGG1112)</label>
+    <select id="vinos" onchange="actualizar()">
+      <option value="">-- Seleccionar Sección --</option>
+      <option value="Mi-1-5:VINOS">001D – Paola Mylene Michaud (Mi 08:31-12:10)</option>
+      <option value="Mi-8-12:VINOS">002D – Francisco Javier Tiska (Mi 13:41-17:20)</option>
+    </select>
   </div>
 
-  <div class="ramo-grupo">
-    <span class="ramo-titulo">🏫 Optativos</span>
-    <div class="opt-item"><input type="checkbox" value="Ju-1-4:MARCA" onchange="actualizar()"><span class="opt-text">Marca Personal (Ju 08:31-11:20)</span></div>
-    <div class="opt-item"><input type="checkbox" value="Vi-1-5:CULTURA" onchange="actualizar()"><span class="opt-text">Cultura y Gastronomía (Vi 08:31-12:10)</span></div>
+  <div>
+    <label>🗣️ Inglés Elemental I (INU3101)</label>
+    <select id="ingles" onchange="actualizar()">
+      <option value="">-- Seleccionar Sección --</option>
+      <option value="Mi-7-8:INGLÉS (ON)|Vi-8-9:INGLÉS (ON)">001D – Marcela Cornejo (Online Síncrona)</option>
+      <option value="Ma-13-14:INGLÉS (ON)|Ju-13-14:INGLÉS (ON)">002D – Carlos Bravo (Online Síncrona)</option>
+      <option value="Ma-5-6:INGLÉS|Mi-6-7:INGLÉS">003D – Blanca Rosa Fierro (Presencial)</option>
+      <option value="Mi-1-2:INGLÉS|Vi-6-7:INGLÉS">004D – Sofía Catalina Ilabaca (Presencial)</option>
+    </select>
   </div>
 
+  <div>
+    <label>🏫 Optativos (Puedes marcar varios)</label>
+    <div class="optativos-container" id="optativos-checks">
+      <div class="opt-item">
+        <input type="checkbox" value="Ju-1-4:MARCA" onchange="actualizar()">
+        <span class="opt-text">Gestión de Marca Personal (Ju 08:31-11:20)</span>
+      </div>
+      <div class="opt-item">
+        <input type="checkbox" value="Vi-1-5:CULTURA" onchange="actualizar()">
+        <span class="opt-text">Cultura y Gastronomía (Vi 08:31-12:10)</span>
+      </div>
+      <div class="opt-item">
+        <input type="checkbox" value="0-0:ALFABETIZACION" onchange="actualizar()">
+        <span class="opt-text">Alfabetización Informacional (Por Confirmar)</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="table-wrapper">
@@ -89,6 +126,7 @@ const tabla = document.getElementById("tabla");
 const alerta = document.getElementById("alerta");
 let ocupado = {};
 
+// Dibujar tabla
 rangos.forEach((hora, i) => {
   const fila = document.createElement("tr");
   fila.innerHTML = `<td>${hora}</td>` + dias.map(d => `<td data-dia="${d}" data-modulo="${i+1}"></td>`).join("");
@@ -122,17 +160,23 @@ function actualizar() {
   document.querySelectorAll("td[data-dia]").forEach(c => { c.textContent = ""; c.className = ""; });
   ocupado = {}; alerta.innerHTML = ""; alerta.style.display = "none";
   
-  // Buscar todos los checkboxes marcados en toda la página
-  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+  // Ramos obligatorios
+  ["cocina", "pasteleria", "ciencia", "vinos", "ingles"].forEach(id => {
+    const s = document.getElementById(id);
+    if (s && s.value) pintar(s.value);
+  });
+
+  // Optativos (Checkboxes)
+  document.querySelectorAll('#optativos-checks input:checked').forEach(cb => {
     pintar(cb.value);
   });
 }
 
 function limpiarTodo() {
+  document.querySelectorAll('select').forEach(s => s.value = '');
   document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
   actualizar();
 }
 </script>
 </body>
 </html>
-
