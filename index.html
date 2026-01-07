@@ -54,16 +54,18 @@
 
   <div>
     <label>🗣️ Inglés Elemental I (INU3101)</label>
-    <select id="ingles">
+    <select id="ingles" onchange="actualizar()">
       <option value="">-- Seleccionar Sección --</option>
-      <option value="Mi-7-8:INGLÉS I|Vi-8-9:INGLÉS I">INU3101-001D – Cornejo (Mi/Vi Tarde)</option>
-      <option value="Ma-13-14:INGLÉS I|Ju-13-14:INGLÉS I">INU3101-002D – Bravo (Ma/Ju 17:31-18:50)</option>
-      <option value="Ma-5-6:INGLÉS I|Mi-6-7:INGLÉS I">INU3101-003D – Fierro (Ma/Mi Mediodía)</option>
-      <option value="Mi-1-2:INGLÉS I|Vi-6-7:INGLÉS I">INU3101-004D – Ilabaca (Mi Mañana / Vi Mediodía)</option>
-      <option value="Ju-7-8:INGLÉS I|Vi-6-7:INGLÉS I">INU3101-005D – Fierro (Ju Tarde / Vi Mediodía)</option>
-      <option value="Mi-7-8:INGLÉS I|Vi-3-4:INGLÉS I">INU3101-006D – [PC] (Mi Tarde / Vi Mañana)</option>
-      <option value="Ma-1-2:INGLÉS I|Ju-3-4:INGLÉS I">INU3101-007D – [PC] (Ma Mañana / Ju Mañana)</option>
-    </select>
+      <option value="Mi-7-8:INGLÉS (ON)|Vi-8-9:INGLÉS (ON)">001D – Cornejo (Mi/Vi) [ONLINE]</option>
+      <option value="Ma-13-14:INGLÉS (ON)|Ju-13-14:INGLÉS (ON)">002D – Bravo (Ma/Ju) [ONLINE]</option>
+      
+      <option value="Ma-5-6:INGLÉS|Mi-6-7:INGLÉS">003D – Fierro (Ma/Mi Mediodía)</option>
+      <option value="Mi-1-2:INGLÉS|Vi-6-7:INGLÉS">004D – Ilabaca (Mi AM / Vi Mediodía)</option>
+      <option value="Ju-7-8:INGLÉS|Vi-6-7:INGLÉS">005D – Fierro (Ju PM / Vi Mediodía)</option>
+      <option value="Mi-7-8:INGLÉS|Vi-3-4:INGLÉS">006D – [PC] (Mi PM / Vi AM)</option>
+      <option value="Ma-1-2:INGLÉS|Ju-3-4:INGLÉS">007D – [PC] (Ma AM / Ju AM)</option>
+  </select>
+    
   </div>
 
   <div>
@@ -207,5 +209,6 @@ document.querySelectorAll("select").forEach(sel => {
 </script>
 </body>
 </html>
+
 
      
