@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Horario 5to Semestre, 2026</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 20px; background-color: #f0f2f5; color: #333; }
+    h2 { color: #1a3a5a; border-bottom: 2px solid #1a3a5a; padding-bottom: 10px; }
+    .controles { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    label { font-weight: bold; font-size: 13px; display: block; margin-bottom: 5px; }
+    select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background-color: #fafafa; }
+    table { border-collapse: collapse; width: 100%; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: center; font-size: 12px; }
+    th { background-color: #1a3a5a; color: white; text-transform: uppercase; letter-spacing: 1px; }
+    .bloque { background-color: #e3f2fd; font-weight: bold; color: #0d47a1; border: 1px solid #90caf9; }
+    .conflicto { background-color: #ffebee; color: #b71c1c; border: 2px solid #ef5350; animation: flash 1s infinite; }
+    @keyframes flash { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+    #alerta { color: #b71c1c; background-color: #ffcdd2; border: 1px solid #ef9a9a; padding: 15px; border-radius: 4px; margin-bottom: 20px; display: none; font-weight: bold; }
+    .footer { margin-top: 20px; font-size: 11px; color: #666; text-align: right; }
+  </style>
+</head>
+<body>
+
+<h2>📘 Generador de Horario - Semestre Actual</h2>
+<div id="alerta"></div>
+
+<div class="controles">
+  <div>
+    <label>🍽️ Cocina Criolla Chilena (PGG1110)</label>
+    <select id="criolla">
+      <option value="">-- Seleccionar Sección --</option>
+      <option value="Lu-1-5:COCINA CRIOLLA">PGG1110-001D – Santamaría (Lu 08:31-12:10)</option>
+      <option value="Lu-7-11:COCINA CRIOLLA">PGG1110-002D – Tapia (Lu 13:01-16:40)</option>
+      <option value="Ma-1-5:COCINA CRIOLLA">PGG1110-003D – [Por confirmar] (Ma 08:31-12:10)</option>
+      <option value="Ma-7-11:COCINA CRIOLLA">PGG1110-004D – Barrera (Ma 13:01-16:40)</option>
+      <option value="Mi-1-5:COCINA CRIOLLA">PGG1110-005D – Valdivia (Mi 08:31-12:10)</option>
+      <option value="Mi-7-11:COCINA CRIOLLA">PGG1110-006D – Preuss (Mi 13:01-16:40)</option>
+      <option value="Ju-1-5:COCINA CRIOLLA">PGG1110-007D – Barrera (Ju 08:31-12:10)</option>
+      <option value="Ju-7-11:COCINA CRIOLLA">PGG1110-008D – Barrera (Ju 13:01-16:40)</option>
+      <option value="Vi-1-5:COCINA CRIOLLA">PGG1110-009D – Barrera (Vi 08:31-12:10)</option>
+    </select>
+  </div>
+
+  <div>
+    <label>🧪 Gastronomía Científica e Innovación (DPG1105)</label>
+    <select id="innovacion">
+      <option value="">-- Seleccionar Sección --</option>
+      <option value="Lu-1-4:INNOVACIÓN">DPG1105-002D – Díaz (Lu 08:31-11:20)</option>
+      <option value="Mi-1-4:INNOVACIÓN">DPG1105-001D – Carrasco (Mi 08:31-11:20)</option>
+      <option value="Ju-7-10:INNOVACIÓN">DPG1105-004D – Díaz (Ju 13:01-15:50)</option>
+      <option value="Vi-1-4:INNOVACIÓN">DPG1105-003D – Díaz (Vi 08:31-11:20)</option>
+    </select>
+  </div>
+
+  <div>
+    <label>🗣️ Inglés Elemental I (INU3101)</label>
+    <select id="ingles">
+      <option value="">-- Seleccionar Sección --</option>
+      <option value="Mi-7-8:INGLÉS I|Vi-8-9:INGLÉS I">INU3101-001D – Cornejo (Mi/Vi Tarde)</option>
+      <option value="Ma-13-14:INGLÉS I|Ju-13-14:INGLÉS I">INU3101-002D – Bravo (Ma/Ju 17:31-18:50)</option>
+      <option value="Ma-5-6:INGLÉS I|Mi-6-7:INGLÉS I">INU3101-003D – Fierro (Ma/Mi Mediodía)</option>
+      <option value="Mi-1-2:INGLÉS I|Vi-6-7:INGLÉS I">INU3101-004D – Ilabaca (Mi Mañana / Vi Mediodía)</option>
+      <option value="Ju-7-8:INGLÉS I|Vi-6-7:INGLÉS I">INU3101-005D – Fierro (Ju Tarde / Vi Mediodía)</option>
+      <option value="Mi-7-8:INGLÉS I|Vi-3-4:INGLÉS I">INU3101-006D – [PC] (Mi Tarde / Vi Mañana)</option>
+      <option value="Ma-1-2:INGLÉS I|Ju-3-4:INGLÉS I">INU3101-007D – [PC] (Ma Mañana / Ju Mañana)</option>
+    </select>
+  </div>
+
+  <div>
+    <label>🍰 Pastelería y Repostería Criolla (PGG1111)</label>
+    <select id="pasteleria">
+      <option value="">-- Seleccionar Sección --</option>
+      <option value="Lu-7-11:PASTELERÍA">PGG1111-001D – Barrera (Lu 13:01-16:40)</option>
+      <option value="Lu-1-5:PASTELERÍA">PGG1111-002D – Muñoz (Lu 08:31-12:10)</option>
+      <option value="Ma-7-11:PASTELERÍA">PGG1111-003D – Muñoz (Ma 13:01-16:40)</option>
+      <option value="Ma-1-5:PASTELERÍA">PGG1111-004D – Muñoz (Ma 08:31-12:10)</option>
+      <option value="Mi-7-11:PASTELERÍA">PGG1111-005D – Farias (Mi 13:01-16:40)</option>
+      <option value="Mi-1-5:PASTELERÍA">PGG1111-006D – [PC] (Mi 08:31-12:10)</option>
+      <option value="Ju-7-11:PASTELERÍA">PGG1111-007D – Muñoz (Ju 13:01-16:40)</option>
+      <option value="Ju-1-5:PASTELERÍA">PGG1111-008D – Campos (Ju 08:31-12:10)</option>
+      <option value="Vi-7-11:PASTELERÍA">PGG1111-009D – Muñoz (Vi 13:01-16:40)</option>
+    </select>
+  </div>
+
+  <div>
+    <label>🍷 Vinos, Cervezas y Mixología (PGG1112)</label>
+    <select id="vinos">
+<option value="">-- Seleccionar Sección --</option>
+      <option value="Lu-6-9:VINOS">PGG1112-002D – Tiska (Lu 12:11-15:10)</option>
+      <option value="Lu-10-13:VINOS">PGG1112-004D – Tiska (Lu 15:11-18:10)</option>
+      <option value="Ma-8-11:VINOS">PGG1112-001D – Michaud (Ma 13:41-16:40)</option>
+      <option value="Ma-4-7:VINOS">PGG1112-005D – [PC] (Ma 10:41-13:40)</option>
+      <option value="Ju-10-13:VINOS">PGG1112-003D – Tiska (Ju 15:11-18:10)</option>
+      <option value="Vi-11-14:VINOS">PGG1112-006D – Michaud (Vi 16:01-18:50)</option>
+    </select>
+  </div>
+
+  <div>
+    <label>🏫 Optativo 1</label>
+    <select id="optativo1">
+      <option value="">-- Seleccionar Optativo --</option>
+      <option value="Ma-8-11:MARCA PERSONAL">GMP0101-001D – Marca Personal (Donoso - Ma 13:41-16:40)</option>
+      <option value="Ma-1-2:ALFABETIZACIÓN">ALI0010-006D – Alfabetización (Ma 08:31-09:50)</option>
+      <option value="Ma-8-12:CULTURA Y GASTR.">CGT010-003D – Cultura y Gastr. (Arriagada - Ma 13:41-17:20)</option>
+    </select>
+  </div>
+
+  <div>
+    <label>🏫 Optativo 2</label>
+    <select id="optativo2">
+      <option value="">-- Seleccionar Optativo --</option>
+      <option value="Ma-8-11:MARCA PERSONAL">GMP0101-001D – Marca Personal (Donoso - Ma 13:41-16:40)</option>
+      <option value="Ma-1-2:ALFABETIZACIÓN">ALI0010-006D – Alfabetización (Ma 08:31-09:50)</option>
+      <option value="Ma-8-12:CULTURA Y GASTR.">CGT010-003D – Cultura y Gastr. (Arriagada - Ma 13:41-17:20)</option>
+    </select>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hora</th>
+      <th>Lunes</th>
+      <th>Martes</th>
+      <th>Miércoles</th>
+      <th>Jueves</th>
+      <th>Viernes</th>
+    </tr>
+  </thead>
+  <tbody id="tabla"></tbody>
+</table>
+
+<div class="footer">Detección de topes automática activa. Todos los bloques considerados.</div>
+
+<script>
+const rangos = [
+  "08:31–09:10","09:11–09:50","10:01–10:40","10:41–11:20",
+  "11:31–12:10","12:11–12:50","13:01–13:40","13:41–14:20",
+  "14:31–15:10","15:11–15:50","16:01–16:40","16:41–17:20",
+  "17:31–18:10","18:11–18:50"
+];
+const dias = ["Lu","Ma","Mi","Ju","Vi"];
+const tabla = document.getElementById("tabla");
+const alerta = document.getElementById("alerta");
+let ocupado = {};
+
+// Crear estructura de la tabla
+rangos.forEach((hora, i) => {
+  const fila = document.createElement("tr");
+  const celdaHora = document.createElement("td");
+  celdaHora.textContent = hora;
+  fila.appendChild(celdaHora);
+  dias.forEach(d => {
+    const celda = document.createElement("td");
+    celda.dataset.dia = d;
+    celda.dataset.modulo = i + 1;
+    fila.appendChild(celda);
+  });
+  tabla.appendChild(fila);
+});
+
+function pintar(valor) {
+  if (!valor) return;
+  const partes = valor.split("|");
+  partes.forEach(v => {
+    const [bloque, nombre] = v.split(":");
+    const [dia, desde, hasta] = bloque.split("-");
+    for (let i = parseInt(desde); i <= parseInt(hasta); i++) {
+      const clave = dia + "-" + i;
+      const celda = document.querySelector(`td[data-dia="${dia}"][data-modulo="${i}"]`);
+      if (celda) {
+        if (ocupado[clave]) {
+          celda.classList.add("conflicto");
+          alerta.style.display = "block";
+          alerta.innerHTML += `⚠️ TOPE DETECTADO: <strong>${ocupado[clave]}</strong> choca con <strong>${nombre}</strong> el ${dia} a las ${rangos[i-1]}<br>`;
+        } else {
+          celda.classList.add("bloque");
+          celda.textContent = nombre;
+          ocupado[clave] = nombre;
+        }
+      }
+    }
+  });
+}
+
+function actualizar() {
+  document.querySelectorAll("td").forEach(celda => {
+    if (celda.dataset.dia) {
+      celda.textContent = "";
+      celda.className = "";
+    }
+  });
+  ocupado = {};
+  alerta.innerHTML = "";
+  alerta.style.display = "none";
+
+  const ids = ["criolla", "innovacion", "ingles", "pasteleria", "vinos", "optativo1", "optativo2"];
+  ids.forEach(id => {
+    const selector = document.getElementById(id);
+    if (selector && selector.value) pintar(selector.value);
+  });
+}
+
+document.querySelectorAll("select").forEach(sel => {
+  sel.addEventListener("change", actualizar);
+});
+</script>
+</body>
+</html>
+
+     
